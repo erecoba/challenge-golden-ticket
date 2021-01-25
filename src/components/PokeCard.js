@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import { mockPokemonData } from "../mock/pokeData";
+import "./PokeCard.css";
 
-function PokeCard() {
+function PokeCard({ mockPokemonData }) {
   const [cardStyle, setCardStyle] = useState(stylesNormalCard());
   const [spriteStyle, setSpriteStyle] = useState(styleNormalSprite());
   const [textStyle, setTextStyle] = useState(styleNormalText());
@@ -74,7 +74,7 @@ function PokeCard() {
   }
 
   return (
-    <div style={styles.container}>
+    <div className="PokeCard__container">
       <Card
         parentRef={cardRef}
         dynamicStyle={cardStyle}
@@ -107,7 +107,8 @@ const Card = (props) => {
   return (
     <div
       ref={props.parentRef}
-      style={{ ...styles.card.container, ...props.dynamicStyle }}
+      className="PokeCard__card"
+      style={{ ...props.dynamicStyle }}
       onMouseMove={props.onMouseMove}
       onMouseLeave={props.onMouseLeave}
     >
@@ -118,7 +119,7 @@ const Card = (props) => {
 
 const CardTitle = (props) => {
   return (
-    <h1 style={{ ...styles.card.text, ...props.dynamicStyle }}>
+    <h1 className="PokeCard__text" style={{ ...props.dynamicStyle }}>
       {props.children}
     </h1>
   );
@@ -133,7 +134,8 @@ const CardSprites = (props) => {
             key={i}
             src={sprite.img}
             alt={props.alt}
-            style={{ ...styles.card.img, ...props.dynamicStyle }}
+            className="PokeCard__img"
+            style={{ ...props.dynamicStyle }}
           />
         );
       })}
@@ -143,47 +145,17 @@ const CardSprites = (props) => {
 
 const CardLinkVideo = (props) => {
   return (
-    <p style={{ ...styles.card.text, ...props.dynamicStyle }}>
+    <p style={{ ...props.dynamicStyle }}>
       <a
         href={props.href}
         target="_blank"
-        rel="noreferrer"
-        style={styles.card.text}
+        rel="noopener noreferrer"
+        className="PokeCard__text"
       >
         {props.children}
       </a>
     </p>
   );
-};
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%"
-  },
-  card: {
-    container: {
-      background:
-        "linear-gradient(90deg, rgb(240, 128, 48) 50%, rgb(168, 144, 240) 50%)",
-      minWidth: "300px",
-      borderRadius: "20px",
-      paddingBottom: "10px",
-      transformStyle: "preserve-3d",
-      perspective: "1000px"
-    },
-    text: {
-      color: "#ffffff",
-      marginTop: "30px",
-      transition: "transform 750ms ease-out"
-    },
-    img: {
-      zIndex: "2",
-      transition: "transform 750ms ease-out"
-    }
-  }
 };
 
 export default PokeCard;

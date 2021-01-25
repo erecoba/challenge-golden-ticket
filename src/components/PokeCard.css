@@ -1,0 +1,28 @@
+.PokeCard__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.PokeCard__card {
+  background: linear-gradient(
+    90deg,
+    rgb(240, 128, 48) 50%,
+    rgb(168, 144, 240) 50%
+  );
+  min-width: 300px;
+  border-radius: 20px;
+  padding-bottom: 10px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.PokeCard__text {
+  color: #ffffff;
+  margin-top: 30px;
+  transition: transform 750ms ease-out;
+}
+.PokeCard__img {
+  z-index: 2;
+  transition: transform 750ms ease-out;
+}
